@@ -1,6 +1,7 @@
-﻿namespace com.project.parcel.Domain.IRepository;
+﻿
+namespace com.project.parcel.Domain.IRepository;
 
-public class IRepository
+public interface IRepository<T> where T: class
 {
-    
+    IUnitOfWork UnitOfWork { get; }
 }

@@ -1,4 +1,8 @@
+using com.project.parcel.Domain.IRepository;
+using com.project.parcel.Domain.IServices;
 using com.project.parcel.Infrastructure;
+using com.project.parcel.Repository;
+using com.project.parcel.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,8 @@ builder.Services.AddDbContext<ParcelDbContext>(options =>
         .GetConnectionString("Parcel")
     )
 );
+builder.Services.AddScoped<IParcelService, ParcelService>();
+builder.Services.AddScoped<IParcelRepository, ParcelRepository>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

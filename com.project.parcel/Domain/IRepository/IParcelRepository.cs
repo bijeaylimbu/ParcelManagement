@@ -1,6 +1,9 @@
-﻿namespace com.project.parcel.Domain.IRepository;
+﻿using com.project.parcel.BuildingBlocks.Core;
+using com.project.parcel.Domain.Models;
 
-public class ParcelRepository:
+namespace com.project.parcel.Domain.IRepository;
+
+public interface IParcelRepository: IRepository<ParcelDetail>
 {
-    
+    ParcelDetail AddParcel(ParcelDetail parcelDetail);
 }

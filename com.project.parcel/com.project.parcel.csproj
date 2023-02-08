@@ -29,8 +29,7 @@
     <ItemGroup>
       <Folder Include="Application\Requests" />
       <Folder Include="Application\Responses" />
-      <Folder Include="Domain\IServices" />
-      <Folder Include="Services" />
+      <Folder Include="Pages" />
     </ItemGroup>
 
 </Project>

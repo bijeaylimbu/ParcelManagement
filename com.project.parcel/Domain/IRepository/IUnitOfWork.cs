@@ -1,6 +1,8 @@
-﻿namespace com.project.parcel.Domain.IRepository;
+﻿using com.project.parcel.Common;
 
-public interface IUnitOfWork
+namespace com.project.parcel.Domain.IRepository;
+
+public interface IUnitOfWork: IDisposable
 {
-    
+    Task<ResponseMessage> SaveEntitiesAsync(CancellationToken cancellationToken = default);
 }

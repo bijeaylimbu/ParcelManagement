@@ -1,12 +1,12 @@
-﻿using com.project.parcel.BuildingBlocks.Core;
-using com.project.parcel.Common;
+﻿using com.project.parcel.Common;
+using com.project.parcel.Domain.IRepository;
 using com.project.parcel.Domain.Models;
 using com.project.parcel.Infrastructure.EntityConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace com.project.parcel.Infrastructure;
 
-public partial class ParcelDbContext: DbContext, IUnitOfWork
+public partial class ParcelDbContext: DbContext,IUnitOfWork
 {
     public ParcelDbContext()
     {
