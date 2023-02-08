@@ -1,0 +1,73 @@
+﻿@model IEnumerable<com.project.parcel.Domain.Models.ParcelDetail>
+
+<div class="row">
+     <table class="table table-striped border">  
+                    <tr class="table-secondary">  
+                        <th>  
+                             Way Bill Number
+                        </th>  
+                        <th>  
+                           Entry Date and Time
+                        </th>  
+                        <th>  
+                             Branch Code
+                        </th>  
+                        <th>  
+                          Sender Name
+                        </th> 
+                         <th>  
+                          Sender Address
+                         </th> 
+                        <th>
+                            Receiver Name
+                        </th>
+                        <th>
+                            Receiver Address
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            History of Parcel
+                        </th>
+                    </tr>  
+                       @foreach (var parcel in @Html.ViewData.Model)
+                    {  
+                        <tr>  
+                            <td>  
+                                @Html.DisplayFor(m => parcel.WayBillNumber)  
+                            </td>  
+                            <td>  
+                                @Html.DisplayFor(m => parcel.Date)  
+                            </td>  
+                            <td>  
+                                @* @Html.DisplayFor(m => parcel.)   *@
+                            </td>  
+                            <td>
+                                @Html.DisplayFor(m => parcel.SenderInformation.Name)  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => parcel.SenderInformation.Address)  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => parcel.ReceiverInformation.Name)  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => parcel.ReceiverInformation.Address)  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => parcel.ShippingStatus)  
+                            </td>
+                            <td>
+                                @* @Html.DisplayFor(m => parcel.l)   *@
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>  
+                    }  
+                </table>
+</div>

@@ -18,6 +18,12 @@ public class ParcelService: IParcelService
         return await PersistParcel(parcelViewModel, cancellationToken);
     }
 
+    public async Task<IEnumerable<ParcelDetail>> GetAllParcel(CancellationToken cancellationToken)
+    {
+        var result = await _parcelRepository.GetAllParcel(cancellationToken);
+        return result;
+    }
+
     public async Task<ResponseMessage> PersistParcel(AddParcelViewModel viewModel, CancellationToken cancellationToken)
     {
         var dbParcel = _parcelRepository.AddParcel(new ParcelDetail()

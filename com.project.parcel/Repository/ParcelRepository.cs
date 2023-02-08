@@ -1,6 +1,7 @@
 ﻿using com.project.parcel.Domain.IRepository;
 using com.project.parcel.Domain.Models;
 using com.project.parcel.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace com.project.parcel.Repository;
 
@@ -18,5 +19,10 @@ public class ParcelRepository: IParcelRepository
         return parcelDetail.ParcelId == default ? _dbContext.ParcelDetails.Add(parcelDetail).Entity : parcelDetail;
     }
 
-   
+    public async Task<IEnumerable<ParcelDetail>> GetAllParcel(CancellationToken cancellationToken)
+    {
+        var parcel = await _dbContext.ParcelDetails.OrderByDescending(x => x.ParcelId).Include(x => x.SenderInformation)
+            .Include(x => x.ReceiverInformation).AsNoTracking().ToListAsync();
+        return parcel;
+    }
 }

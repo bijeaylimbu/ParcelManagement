@@ -31,4 +31,20 @@ public class ParcelController: Controller
             throw;
         }
     }
+    
+    [HttpGet]
+    [Route("parcel-list")]
+    public async Task<IActionResult> GetAllParcel( CancellationToken cancellationToken)
+    {
+        try
+        {
+            var parcels=  await _parcelService.GetAllParcel( cancellationToken);
+            return View("parcelList",parcels);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
