@@ -28,7 +28,7 @@
             @Html.ValidationMessageFor(model => model.WayBillNumber, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Shipping Status <span>*</span></label>
-            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus))) );
+            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus))), new {@class="btn btn-secondary dropdown-toggle"} );
             @Html.ValidationMessageFor(model => model.ShippingStatus, String.Empty, new { @class = "text-danger" })
             <br/>
             <h2>Sender Information</h2>
