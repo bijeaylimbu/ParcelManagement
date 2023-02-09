@@ -1,6 +1,9 @@
 ﻿
+using com.project.parcel.Application.Validator;
 using com.project.parcel.Domain.BusinessEntities;
 using com.project.parcel.Domain.IServices;
+using com.project.parcel.Domain.Models;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.project.parcel.Controllers;
@@ -20,16 +23,26 @@ public class ParcelController: Controller
     [HttpPost]
     public async Task<IActionResult> AddParcel(AddParcelViewModel addParcelViewModel, CancellationToken cancellationToken)
     {
-        try
-        {
-          var result=     await _parcelService.CreateParcel(addParcelViewModel, cancellationToken);
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        
+            ParcelValidator parcelValidator = new ParcelValidator();
+            ValidationResult validationResult = await parcelValidator.ValidateAsync(addParcelViewModel, cancellationToken);
+            if(!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+
+                return View("index", addParcelViewModel);
+
+            }
+            else
+            {
+                var result=     await _parcelService.CreateParcel(addParcelViewModel, cancellationToken);
+                ViewBag.SuccessMessage = result.Message;
+                ModelState.Clear();
+                return View("index");
+            }
     }
     
     [HttpGet]
