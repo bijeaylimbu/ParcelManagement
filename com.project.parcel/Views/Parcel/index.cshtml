@@ -1,10 +1,15 @@
 ﻿@using com.project.parcel.Domain.Models.Enum
 @model com.project.parcel.Domain.BusinessEntities.AddParcelViewModel;
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/js/bootstrap.bundle.js"/>
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+
 @using (Html.BeginForm("AddParcel", "Parcel", FormMethod.Post))
 {
-    <label for="">Date <span>*</span></label>
+    <label for="validateDate">Date <span>*</span></label>
     @Html.TextBoxFor(model => model.Date, new { @class = "input-lg form-control rounded-0", type="date", @Required = "Required"})
-    @Html.ValidationMessageFor(model => model.Date, String.Empty, new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.Date, String.Empty, new { @class = "text-danger", id="validateDate" })
     <label for="">Way Bill Number <span>*</span></label>
     @Html.TextBoxFor(model => model.WayBillNumber, new { @class = "input-lg form-control rounded-0",type="number", @Required = "Required"})
     @Html.ValidationMessageFor(model => model.WayBillNumber, String.Empty, new { @class = "text-danger" })
