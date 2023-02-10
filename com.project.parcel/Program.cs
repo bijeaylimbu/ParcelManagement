@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ParcelDbContext>(options =>
 builder.Services.AddScoped<IParcelService, ParcelService>();
 builder.Services.AddScoped<IParcelRepository, ParcelRepository>();
 builder.Services.AddSingleton<DapperDbContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

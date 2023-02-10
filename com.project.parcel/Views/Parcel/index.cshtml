@@ -19,93 +19,93 @@
 {
  
     <div class="w-50 p-3">
-         <label for="">Date <span>*</span></label>
+         <label for="">Date </label>
             @Html.TextBoxFor(model => model.Date, new { @class = "input-lg form-control rounded-0", type="date"})
             @Html.ValidationMessageFor(model => model.Date, String.Empty, new { @class = "text-danger" })
             <br/>
-            <label for="">Way Bill Number <span>*</span></label>
+            <label for="">Way Bill Number</label>
             @Html.TextBoxFor(model => model.WayBillNumber, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.WayBillNumber, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Shipping Status <span>*</span></label>
-            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus))), new {@class="btn btn-secondary dropdown-toggle"} );
+            <label for="">Shipping Status</label>
+            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus))), new {@class="btn btn-secondary dropdown-toggle"} )
             @Html.ValidationMessageFor(model => model.ShippingStatus, String.Empty, new { @class = "text-danger" })
             <br/>
             <h2>Sender Information</h2>
             <br/>
-            <label for="">Name <span>*</span></label>
+            <label for="">Name </label>
             @Html.TextBoxFor(model => model.SenderInformation.Name, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.SenderInformation.Name, String.Empty, new { @class = "text-danger" })
            <br/>
-            <label for="">Address <span>*</span></label>
+            <label for="">Address </label>
             @Html.TextBoxFor(model => model.SenderInformation.Address, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.SenderInformation.Address, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Phone Number <span>*</span></label>
+            <label for="">Phone Number</label>
             @Html.TextBoxFor(model => model.SenderInformation.PhoneNumber, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.SenderInformation.PhoneNumber, String.Empty, new { @class = "text-danger" })
             
             <h2>Receiver Information</h2>
             <br/>
              <br/>
-            <label for="">Name <span>*</span></label>
+            <label for="">Name </label>
             @Html.TextBoxFor(model => model.ReceiverInformation.Name, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.ReceiverInformation.Name, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Address <span>*</span></label>
+            <label for="">Address </label>
             @Html.TextBoxFor(model => model.ReceiverInformation.Address, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.ReceiverInformation.Address, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Phone Number <span>*</span></label>
+            <label for="">Phone Number</label>
             @Html.TextBoxFor(model => model.ReceiverInformation.PhoneNumber, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.ReceiverInformation.PhoneNumber, String.Empty, new { @class = "text-danger" })
     </div>
     <div class="w-50 p-3">
          <h2>Package Details</h2>
             <br/>
-            <label for="">No of Packages <span>*</span></label>
+            <label for="">No of Packages </label>
             @Html.TextBoxFor(model => model.NoOfParcels, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.NoOfParcels, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Larry No <span>*</span></label>
+            <label for="">Larry No </label>
             @Html.TextBoxFor(model => model.LarryNo, new { @class = "input-lg form-control rounded-0", type="number"})
             @Html.ValidationMessageFor(model => model.LarryNo, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">TIN No <span>*</span></label>
+            <label for="">TIN No </label>
             @Html.TextBoxFor(model => model.TINNo, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.TINNo, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Description <span>*</span></label>
+            <label for="">Description</label>
             @Html.TextBoxFor(model => model.Description, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.Description, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Actual Weight <span>*</span></label>
+            <label for="">Actual Weight</label>
             @Html.TextBoxFor(model => model.Weight, new { @class = "input-lg form-control rounded-0", type="number"})
             @Html.ValidationMessageFor(model => model.Weight, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Value of Goods Rs <span>*</span></label>
+            <label for="">Value of Goods Rs </label>
             @Html.TextBoxFor(model => model.ValueOfGoods, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.ValueOfGoods, String.Empty, new { @class = "text-danger" })
           
             <h2>Charges</h2>
             <br/>
-            <label for="">Rate / kg Rs <span>*</span></label>
+            <label for="">Rate / kg Rs </label>
             @Html.TextBoxFor(model => model.RatePerKg, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.RatePerKg, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">To Pay Re <span>*</span></label>
+            <label for="">To Pay Re </label>
             @Html.TextBoxFor(model => model.ToPay, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.ToPay, String.Empty, new { @class = "text-danger" })
             <br/>
-            <label for="">Due Paid <span>*</span></label>
+            <label for="">Due Paid </label>
             @Html.TextBoxFor(model => model.DuePaid, new { @class = "input-lg form-control rounded-0", type="number"})
             @Html.ValidationMessageFor(model => model.DuePaid, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">VAT <span>*</span></label>
+            <label for="">VAT </label>
             @Html.TextBoxFor(model => model.Vat, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.Vat, String.Empty, new { @class = "text-danger" })
              <br/>
-            <label for="">Grand Total <span>*</span></label>
+            <label for="">Grand Total </label>
             @Html.TextBoxFor(model => model.GrandTotal, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.GrandTotal, String.Empty, new { @class = "text-danger" })
     </div>
