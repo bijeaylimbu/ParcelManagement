@@ -16,6 +16,7 @@ public class ParcelDetail
     public int LarryNo { get; set; }
     public int TINNo { get; set; }
     public DateTime Date { get; set; }
+    
     public int WayBillNumber { get; set; }
     public ShippingStatus ShippingStatus { get; set; }
     public float RatePerKg { get; set; }

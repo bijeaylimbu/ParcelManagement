@@ -4,6 +4,7 @@ using com.project.parcel.Infrastructure;
 using com.project.parcel.Repository;
 using com.project.parcel.Services;
 using Microsoft.EntityFrameworkCore;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<ParcelDbContext>(options =>
 );
 builder.Services.AddScoped<IParcelService, ParcelService>();
 builder.Services.AddScoped<IParcelRepository, ParcelRepository>();
+builder.Services.AddSingleton<DapperDbContext>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -27,7 +29,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

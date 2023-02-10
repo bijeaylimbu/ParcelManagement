@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace com.project.parcel.Infrastructure.EntityConfiguration;
 
-public sealed class ReceiverInformationBuilder: IEntityTypeConfiguration<SenderInformation>
+public sealed class ReceiverInformationBuilder: IEntityTypeConfiguration<ReceiverInformation>
 {
-    public void Configure(EntityTypeBuilder<SenderInformation> builder)
+    public void Configure(EntityTypeBuilder<ReceiverInformation> builder)
     {
-        builder.ToTable("sender_information");
-        builder.HasKey(x => x.SenderId);
-        builder.Property(x => x.SenderId)
-            .HasColumnName("sender_id")
+        builder.ToTable("receiver_information");
+        builder.HasKey(x => x.ReceiverId);
+        builder.Property(x => x.ReceiverId)
+            .HasColumnName("receiver_id")
             .IsRequired();
         builder.Property(x => x.Name)
             .HasColumnName("name")
