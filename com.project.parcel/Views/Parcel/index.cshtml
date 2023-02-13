@@ -1,9 +1,13 @@
 ﻿@using com.project.parcel.Domain.Models.Enum
+@using Microsoft.OpenApi.Extensions
 @model com.project.parcel.Domain.BusinessEntities.AddParcelViewModel;
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="~/lib/bootstrap/dist/js/bootstrap.bundle.js"/>
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+
+
+
 
 @Html.ValidationSummary(true, String.Empty, new {@class="text-danger"})
 @{
@@ -28,7 +32,7 @@
             @Html.ValidationMessageFor(model => model.WayBillNumber, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Shipping Status</label>
-            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus))), new {@class="btn btn-secondary dropdown-toggle"} )
+            @Html.DropDownListFor(model => model.ShippingStatus, new SelectList(Enum.GetValues(typeof(ShippingStatus)), ShippingStatus.COLLECTED), new {@class="btn btn-secondary dropdown-toggle", @disabled = "disabled"} )
             @Html.ValidationMessageFor(model => model.ShippingStatus, String.Empty, new { @class = "text-danger" })
             <br/>
             <h2>Sender Information</h2>
@@ -42,7 +46,7 @@
             @Html.ValidationMessageFor(model => model.SenderInformation.Address, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Phone Number</label>
-            @Html.TextBoxFor(model => model.SenderInformation.PhoneNumber, new { @class = "input-lg form-control rounded-0"})
+            @Html.TextBoxFor(model => model.SenderInformation.PhoneNumber, new { @class = "input-lg form-control rounded-0",type="number"})
             @Html.ValidationMessageFor(model => model.SenderInformation.PhoneNumber, String.Empty, new { @class = "text-danger" })
             
             <h2>Receiver Information</h2>
@@ -54,7 +58,7 @@
              <br/>
             <label for="">Address </label>
             @Html.TextBoxFor(model => model.ReceiverInformation.Address, new { @class = "input-lg form-control rounded-0"})
-            @Html.ValidationMessageFor(model => model.ReceiverInformation.Address, String.Empty, new { @class = "text-danger" })
+            @* @Html.ValidationMessageFor(model => model.ReceiverInformation.Address, String.Empty, new { @class = "text-danger" }) *@
              <br/>
             <label for="">Phone Number</label>
             @Html.TextBoxFor(model => model.ReceiverInformation.PhoneNumber, new { @class = "input-lg form-control rounded-0"})
@@ -76,11 +80,11 @@
             @Html.ValidationMessageFor(model => model.TINNo, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Description</label>
-            @Html.TextBoxFor(model => model.Description, new { @class = "input-lg form-control rounded-0"})
+            @Html.TextAreaFor(model => model.Description, new { @class = "input-lg form-control rounded-0"})
             @Html.ValidationMessageFor(model => model.Description, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Actual Weight</label>
-            @Html.TextBoxFor(model => model.Weight, new { @class = "input-lg form-control rounded-0", type="number"})
+            @Html.TextBoxFor(model => model.Weight, new { @class = "input-lg form-control rounded-0", type="number", @id="actual_weight",  onblur="calcGrandTotal()"})
             @Html.ValidationMessageFor(model => model.Weight, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Value of Goods Rs </label>
@@ -90,25 +94,40 @@
             <h2>Charges</h2>
             <br/>
             <label for="">Rate / kg Rs </label>
-            @Html.TextBoxFor(model => model.RatePerKg, new { @class = "input-lg form-control rounded-0",type="number"})
+            @Html.TextBoxFor(model => model.RatePerKg, new { @class = "input-lg form-control rounded-0",type="number", @id="rate_per_kg", onblur="calcGrandTotal()"})
             @Html.ValidationMessageFor(model => model.RatePerKg, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">To Pay Re </label>
-            @Html.TextBoxFor(model => model.ToPay, new { @class = "input-lg form-control rounded-0",type="number"})
+            @Html.TextBoxFor(model => model.ToPay, new { @class = "input-lg form-control rounded-0", @id="to_pay_rupees", type="number"})
             @Html.ValidationMessageFor(model => model.ToPay, String.Empty, new { @class = "text-danger" })
             <br/>
             <label for="">Due Paid </label>
-            @Html.TextBoxFor(model => model.DuePaid, new { @class = "input-lg form-control rounded-0", type="number"})
+            @Html.TextBoxFor(model => model.DuePaid, new { @class = "input-lg form-control rounded-0", type="number" , @id="due_amount"})
             @Html.ValidationMessageFor(model => model.DuePaid, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">VAT </label>
-            @Html.TextBoxFor(model => model.Vat, new { @class = "input-lg form-control rounded-0",type="number"})
+            @Html.TextBoxFor(model => model.Vat, new { @class = "input-lg form-control rounded-0",type="number", @id="vat", onblur="calcGrandTotal()"})
             @Html.ValidationMessageFor(model => model.Vat, String.Empty, new { @class = "text-danger" })
              <br/>
             <label for="">Grand Total </label>
-            @Html.TextBoxFor(model => model.GrandTotal, new { @class = "input-lg form-control rounded-0",type="number"})
+            @Html.TextBoxFor(model => model.GrandTotal, new { @class = "input-lg form-control rounded-0",type="number",@id="grand_total"})
             @Html.ValidationMessageFor(model => model.GrandTotal, String.Empty, new { @class = "text-danger" })
     </div>
  <button class="btn btn-primary btn-lg rounded-0 d-flex align-items-center pe-2 ps-2" style="width: 100px">Save</button>
                                                                                                           
+}
+
+@section Scripts
+{
+ <script type="text/javascript">
+ function  calcGrandTotal(){
+   var actualWeightLabel= document.getElementById("actual_weight").value;
+   var actualWeight=parseFloat(actualWeightLabel);
+   var ratePerKgLabel=document.getElementById("rate_per_kg").value;
+   var ratePerKg=parseFloat(ratePerKgLabel);
+   var vatLabel=document.getElementById("vat").value;
+   var vatAmount=parseFloat(vatLabel);
+    document.getElementById("grand_total").value=(ratePerKg*actualWeight)+vatAmount;
+ }
+ </script>
 }

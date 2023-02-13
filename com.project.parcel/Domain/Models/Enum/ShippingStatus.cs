@@ -4,12 +4,14 @@ namespace com.project.parcel.Domain.Models.Enum;
 
 public enum ShippingStatus
 {  
+    [EnumMember(Value = "COLLECTED")]
+    COLLECTED=0,
     [EnumMember(Value = "PENDING")]
-    PENDING=0,
+    PENDING=1,
     [EnumMember(Value = "PROCESSING")]
-    PROCESSING=1,
+    PROCESSING=2,
     [EnumMember(Value = "REJECTED")]
-    REJECTED=2,
+    REJECTED=3,
     [EnumMember(Value = "COMPLETED")]
     COMPLETED=4
 }

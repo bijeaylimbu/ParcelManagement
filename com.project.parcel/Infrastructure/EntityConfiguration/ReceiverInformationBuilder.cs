@@ -19,5 +19,8 @@ public sealed class ReceiverInformationBuilder: IEntityTypeConfiguration<Receive
         builder.Property(x => x.PhoneNumber)
             .HasColumnName("phone_number")
             .IsRequired();
+        builder.Property(x => x.Address)
+            .HasColumnName("address")
+            .IsRequired(false);
     }
 }

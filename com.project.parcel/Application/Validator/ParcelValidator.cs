@@ -11,12 +11,12 @@ public class ParcelValidator: AbstractValidator<AddParcelViewModel>
         RuleFor(model => model.Date).NotNull().WithMessage("Date cannot be null")
             .NotEmpty().WithMessage("Date cannot be empty");
         RuleFor(model => model.WayBillNumber).NotEmpty().WithMessage("Will Bill Number cannot be empty");
-        RuleFor(model => model.ShippingStatus).NotEmpty().WithMessage("Shipping Status cannot be empty");
+        // RuleFor(model => model.ShippingStatus).NotEmpty().WithMessage("Shipping Status cannot be empty");
         RuleFor(model => model.SenderInformation.Name).NotEmpty().WithMessage("Sender Name cannot be empty");
         RuleFor(model => model.SenderInformation.Address).NotEmpty().WithMessage("Sender Address cannot be empty");
         RuleFor(model => model.SenderInformation.PhoneNumber).NotEmpty().WithMessage("Sender Phone Number cannot be empty");
         RuleFor(model => model.ReceiverInformation.Name).NotEmpty().WithMessage("Receiver Name cannot be empty");
-        RuleFor(model => model.ReceiverInformation.Address).NotEmpty().WithMessage("Receiver Address be empty");
+        // RuleFor(model => model.ReceiverInformation.Address).NotEmpty().WithMessage("Receiver Address be empty");
         RuleFor(model => model.ReceiverInformation.PhoneNumber).NotEmpty().WithMessage("Receiver Phone Number cannot be empty");
         RuleFor(model => model.NoOfParcels).NotNull().WithMessage("No of Parcel cannot be empty")
             .NotEmpty().WithMessage("Number of Parcels cannot be empty");

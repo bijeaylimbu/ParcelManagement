@@ -19,5 +19,7 @@ public sealed class SenderInformationBuilder: IEntityTypeConfiguration<SenderInf
         builder.Property(x => x.PhoneNumber)
             .HasColumnName("phone_number")
             .IsRequired();
+        builder.Property(x => x.Address)
+            .HasColumnName("address");
     }
 }
